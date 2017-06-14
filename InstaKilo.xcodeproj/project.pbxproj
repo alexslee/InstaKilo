@@ -16,6 +16,7 @@
 		433B40B11EF19AC200D98F4C /* InstaKiloCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 433B40B01EF19AC200D98F4C /* InstaKiloCollectionViewController.m */; };
 		433B40B41EF19B9D00D98F4C /* Picture.m in Sources */ = {isa = PBXBuildFile; fileRef = 433B40B31EF19B9D00D98F4C /* Picture.m */; };
 		433B40B71EF1A9B400D98F4C /* PictureManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 433B40B61EF1A9B400D98F4C /* PictureManager.m */; };
+		433B40BD1EF1C8F500D98F4C /* HeaderCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 433B40BC1EF1C8F500D98F4C /* HeaderCollectionReusableView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,8 @@
 		433B40B31EF19B9D00D98F4C /* Picture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Picture.m; sourceTree = "<group>"; };
 		433B40B51EF1A9B400D98F4C /* PictureManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PictureManager.h; sourceTree = "<group>"; };
 		433B40B61EF1A9B400D98F4C /* PictureManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PictureManager.m; sourceTree = "<group>"; };
+		433B40BB1EF1C8F500D98F4C /* HeaderCollectionReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeaderCollectionReusableView.h; sourceTree = "<group>"; };
+		433B40BC1EF1C8F500D98F4C /* HeaderCollectionReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeaderCollectionReusableView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,14 +72,16 @@
 			children = (
 				433B40951EF0FE6000D98F4C /* AppDelegate.h */,
 				433B40961EF0FE6000D98F4C /* AppDelegate.m */,
-				433B40B21EF19B9D00D98F4C /* Picture.h */,
-				433B40B31EF19B9D00D98F4C /* Picture.m */,
-				433B40B51EF1A9B400D98F4C /* PictureManager.h */,
-				433B40B61EF1A9B400D98F4C /* PictureManager.m */,
+				433B40BB1EF1C8F500D98F4C /* HeaderCollectionReusableView.h */,
+				433B40BC1EF1C8F500D98F4C /* HeaderCollectionReusableView.m */,
 				433B40A91EF196EA00D98F4C /* ImageCollectionViewCell.h */,
 				433B40AA1EF196EA00D98F4C /* ImageCollectionViewCell.m */,
 				433B40AF1EF19AC200D98F4C /* InstaKiloCollectionViewController.h */,
 				433B40B01EF19AC200D98F4C /* InstaKiloCollectionViewController.m */,
+				433B40B21EF19B9D00D98F4C /* Picture.h */,
+				433B40B31EF19B9D00D98F4C /* Picture.m */,
+				433B40B51EF1A9B400D98F4C /* PictureManager.h */,
+				433B40B61EF1A9B400D98F4C /* PictureManager.m */,
 				433B409B1EF0FE6000D98F4C /* Main.storyboard */,
 				433B409E1EF0FE6000D98F4C /* Assets.xcassets */,
 				433B40A01EF0FE6000D98F4C /* LaunchScreen.storyboard */,
@@ -166,6 +171,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				433B40B41EF19B9D00D98F4C /* Picture.m in Sources */,
+				433B40BD1EF1C8F500D98F4C /* HeaderCollectionReusableView.m in Sources */,
 				433B40B11EF19AC200D98F4C /* InstaKiloCollectionViewController.m in Sources */,
 				433B40B71EF1A9B400D98F4C /* PictureManager.m in Sources */,
 				433B40971EF0FE6000D98F4C /* AppDelegate.m in Sources */,

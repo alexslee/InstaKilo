@@ -15,6 +15,9 @@
     if (self == [super init]) {
         self.allPictures = [[NSMutableArray alloc] init];
         self.allImagesDict = [[NSMutableDictionary alloc]init];
+        self.imagesByLocation = [[NSMutableDictionary alloc]init];
+        self.imagesByCategory = [[NSMutableDictionary alloc]init];
+
         //store all images first
         for (int i = 1; i <= 5; i++) {
             NSString *fileName = [NSString stringWithFormat:@"image%d.jpg",i];
@@ -71,6 +74,7 @@
             
         }
         
+        [[_imagesByCategory objectForKey:@"Summertime"] addObject:[[Picture alloc] initWithPicture:[UIImage imageNamed:@"image10.jpg"] andCategory:@"Summertime" andLocation:@"Vancouver"]];
     }
     
     return self;

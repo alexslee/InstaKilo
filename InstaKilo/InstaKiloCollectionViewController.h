@@ -10,6 +10,12 @@
 #import "Picture.h"
 #import "ImageCollectionViewCell.h"
 #import "PictureManager.h"
+#import "HeaderCollectionReusableView.h"
+
+typedef enum : NSUInteger {
+    category,
+    location
+} groupingBy;
 
 @interface InstaKiloCollectionViewController : UICollectionViewController
 
