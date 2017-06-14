@@ -37,6 +37,7 @@
         
         
         //next, sort by location
+        //start by getting a list of all location tags in the list of images, accounting for duplicates
         NSArray *locales = [_allPictures valueForKeyPath:@"@distinctUnionOfObjects.location"];
         
         //go through all location tags
@@ -56,7 +57,7 @@
             
         }
         
-        //lastly, sort by category
+        //lastly, sort by category, using the same logic as implemented for location sorting
         NSArray *categoryList = [_allPictures valueForKeyPath:@"@distinctUnionOfObjects.category"];
         
         for (int i = 0; i < categoryList.count; i++) {
@@ -73,8 +74,8 @@
             [_imagesByCategory setObject:thisCategory forKey:[categoryList objectAtIndex:i]];
             
         }
-        
-        [[_imagesByCategory objectForKey:@"Summertime"] addObject:[[Picture alloc] initWithPicture:[UIImage imageNamed:@"image10.jpg"] andCategory:@"Summertime" andLocation:@"Vancouver"]];
+        //uncomment the below line to duplicate the last image in the category grouping, to show the functionality of the different groups.
+//        [[_imagesByCategory objectForKey:@"Summertime"] addObject:[[Picture alloc] initWithPicture:[UIImage imageNamed:@"image10.jpg"] andCategory:@"Summertime" andLocation:@"Vancouver"]];
     }
     
     return self;

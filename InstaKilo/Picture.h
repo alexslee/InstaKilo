@@ -11,13 +11,19 @@
 
 @interface Picture : NSObject
 
+/*****PROPERTIES*****/
+
+//the Picture instance will store an image's category and location, as well as the image itself
+
 @property (strong, nonatomic) NSString *category;
 
 @property (strong, nonatomic) NSString *location;
 
 @property (strong, nonatomic) UIImage *pic;
 
+/*****METHODS*****/
 
+//custom initializer to setup the image along with its category + location
 - (id)initWithPicture:(UIImage *)picture andCategory:(NSString *)category andLocation:(NSString *)location;
 
 @end

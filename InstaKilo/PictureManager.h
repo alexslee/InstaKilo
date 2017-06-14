@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "Picture.h"
 
+//The PictureManager instance in the VC will contain all of the images (helps (try) to avoid a fat VC)
+
 @interface PictureManager : NSObject
 
 @property (strong, nonatomic) NSMutableArray<Picture *> *allPictures;

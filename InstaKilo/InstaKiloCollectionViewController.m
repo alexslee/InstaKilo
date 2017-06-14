@@ -37,6 +37,12 @@ static NSString * const reuseIdentifier = @"Cell";
     
     // Do any additional setup after loading the view.
     
+    /*
+     * pictureManager object contains all of the images, see its implementation in PictureManager.m
+     * (it works, but was coincidental that the images I picked sorted identically when done by location and by category)
+     * (can uncomment the line in PictureManager.m at the end of the init, which duplicates the last image in the category group, to see it)
+     * Alternatively, just double tap to delete an image, or long-press + reorder, then toggle between groups.
+    */
     self.pictureManager = [[PictureManager alloc] init];
     self.displayThese = self.pictureManager.imagesByCategory;
 
@@ -58,7 +64,7 @@ static NSString * const reuseIdentifier = @"Cell";
 - (IBAction)groupWasToggled:(UISegmentedControl *)sender {
     
     self.sortType = sender.selectedSegmentIndex;
-    
+    //swap the dictionary of images to display, depending on which group the user selected
     switch (self.sortType) {
         case category:
             self.displayThese = self.pictureManager.imagesByCategory;
@@ -79,6 +85,7 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (NSArray *)getKeys;
 {
+    //helper method to obtain a sorted list of keys for further use
     return [[self.displayThese allKeys]sortedArrayUsingSelector:@selector(compare:)];
 }
 
@@ -97,14 +104,12 @@ static NSString * const reuseIdentifier = @"Cell";
 #pragma mark <UICollectionViewDataSource>
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-//#warning Incomplete implementation, return the number of sections
     return [self.displayThese.allKeys count];
 }
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-//#warning Incomplete implementation, return the number of items
-    return [[self.displayThese objectForKey:( [self getKeys][section] )] count];
+    return [[self.displayThese objectForKey:([self getKeys][section])] count];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -122,6 +127,7 @@ static NSString * const reuseIdentifier = @"Cell";
     HeaderCollectionReusableView *header = nil;
     if ([kind isEqualToString: UICollectionElementKindSectionHeader]) {
         header = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"headerReusableView" forIndexPath:indexPath];
+        //set the header text to match the corresponding key in the current image dictionary
         header.headerLabel.text = [self getKeys][indexPath.section];
     }
     return header;
@@ -130,6 +136,7 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (NSIndexPath *)collectionView:(UICollectionView *)collectionView targetIndexPathForMoveFromItemAtIndexPath:(NSIndexPath *)originalIndexPath toProposedIndexPath:(NSIndexPath *)proposedIndexPath;
 {
+    //only allow the user to move photos within the same section
     return ( (originalIndexPath.section == proposedIndexPath.section) ? proposedIndexPath : originalIndexPath );
 }
 
@@ -138,6 +145,8 @@ static NSString * const reuseIdentifier = @"Cell";
     NSString *sectionKey = [self getKeys][sourceIndexPath.section];
     NSMutableArray *pictures = [self.displayThese objectForKey:sectionKey];
     Picture *picture = pictures[sourceIndexPath.row];
+    
+    //re-order the data structure to account for the change that will occur
     [pictures removeObjectAtIndex:sourceIndexPath.row];
     [pictures insertObject:picture atIndex:destinationIndexPath.row];
     
