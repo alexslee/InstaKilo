@@ -38,18 +38,13 @@ static NSString * const reuseIdentifier = @"Cell";
     
     self.pictureManager = [[PictureManager alloc] init];
     self.displayThese = self.pictureManager.imagesByCategory;
+
+    UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleTappedShouldDeleteImage:)];
+    doubleTap.numberOfTapsRequired = 2;
+    self.collectionView.userInteractionEnabled = YES;
     
-//    //TEST SETUP FOR FUNCTIONALITY VIEWING, JUST RANDOMLY SETTING IMAGES + METADATA FOR DEFAULT DISPLAY
-//    self.pictures = [[NSMutableArray alloc] init];
-//    for (int i = 1; i <= 10; i++) {
-//        NSString *fileName = [NSString stringWithFormat:@"image%d.jpg",i];
-//        NSString *testLocation = (i % 2 == 0) ? @"Vancouver" : @"Toronto";
-//        Picture *picture = [[Picture alloc] initWithPicture:[UIImage imageNamed:fileName] andCategory:@"Phone" andLocation:testLocation];
-//        
-//        [self.pictures addObject:picture];
-//    }
-//    
-//    [self.displayThese setObject:self.pictures forKey:@"allImages"];
+    [self.collectionView addGestureRecognizer:doubleTap];
+    
     [self.collectionView setDataSource:self];
     
 }
@@ -80,6 +75,17 @@ static NSString * const reuseIdentifier = @"Cell";
     [self.collectionView reloadData];
     
 }
+- (IBAction)doubleTappedShouldDeleteImage:(UITapGestureRecognizer *)sender {
+//    NSLog(@"double tapped");
+    if (sender.state == UIGestureRecognizerStateRecognized) {
+        NSLog(@"double tapped");
+        CGPoint deleteHere = [sender locationInView:self.collectionView];
+        NSIndexPath *imageToDelete = [self.collectionView indexPathForItemAtPoint:deleteHere];
+        NSString *thisSection = [[self.displayThese allKeys] sortedArrayUsingSelector:@selector(compare:)][imageToDelete.section];
+        [[self.displayThese objectForKey:thisSection] removeObjectAtIndex:imageToDelete.row];
+        [self.collectionView reloadData];
+    }
+}
 
 /*
 #pragma mark - Navigation
@@ -108,10 +114,9 @@ static NSString * const reuseIdentifier = @"Cell";
     ImageCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     
     // Configure the cell
-    
-    //hard-coding for now
     NSArray<Picture *> *images = [self.displayThese objectForKey:[[self.displayThese allKeys] sortedArrayUsingSelector:@selector(compare:)][indexPath.section]];
     cell.imageView.image = [images objectAtIndex:indexPath.row].pic;
+    
     return cell;
 }
 
