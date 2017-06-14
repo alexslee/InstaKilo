@@ -76,27 +76,23 @@ static NSString * const reuseIdentifier = @"Cell";
     [self.collectionView reloadData];
     
 }
+
+- (NSArray *)getKeys;
+{
+    return [[self.displayThese allKeys]sortedArrayUsingSelector:@selector(compare:)];
+}
+
 - (IBAction)doubleTappedShouldDeleteImage:(UITapGestureRecognizer *)sender {
 //    NSLog(@"double tapped");
     if (sender.state == UIGestureRecognizerStateRecognized) {
         NSLog(@"double tapped");
         CGPoint deleteHere = [sender locationInView:self.collectionView];
         NSIndexPath *imageToDelete = [self.collectionView indexPathForItemAtPoint:deleteHere];
-        NSString *thisSection = [[self.displayThese allKeys] sortedArrayUsingSelector:@selector(compare:)][imageToDelete.section];
+        NSString *thisSection = [self getKeys][imageToDelete.section];
         [[self.displayThese objectForKey:thisSection] removeObjectAtIndex:imageToDelete.row];
         [self.collectionView reloadData];
     }
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 #pragma mark <UICollectionViewDataSource>
 
@@ -108,14 +104,14 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
 //#warning Incomplete implementation, return the number of items
-    return [[self.displayThese objectForKey:( [[self.displayThese allKeys] sortedArrayUsingSelector:@selector(compare:)][section] )] count];
+    return [[self.displayThese objectForKey:( [self getKeys][section] )] count];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     ImageCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     
     // Configure the cell
-    NSArray<Picture *> *images = [self.displayThese objectForKey:[[self.displayThese allKeys] sortedArrayUsingSelector:@selector(compare:)][indexPath.section]];
+    NSArray<Picture *> *images = [self.displayThese objectForKey:[self getKeys][indexPath.section]];
     cell.imageView.image = [images objectAtIndex:indexPath.row].pic;
     
     return cell;
@@ -126,7 +122,7 @@ static NSString * const reuseIdentifier = @"Cell";
     HeaderCollectionReusableView *header = nil;
     if ([kind isEqualToString: UICollectionElementKindSectionHeader]) {
         header = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"headerReusableView" forIndexPath:indexPath];
-        header.headerLabel.text = [[self.displayThese allKeys] sortedArrayUsingSelector:@selector(compare:)][indexPath.section];
+        header.headerLabel.text = [self getKeys][indexPath.section];
     }
     return header;
     
@@ -139,7 +135,7 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (void)collectionView:(UICollectionView *)collectionView moveItemAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath;
 {
-    NSString *sectionKey = [[self.displayThese allKeys] sortedArrayUsingSelector:@selector(compare:)][sourceIndexPath.section];
+    NSString *sectionKey = [self getKeys][sourceIndexPath.section];
     NSMutableArray *pictures = [self.displayThese objectForKey:sectionKey];
     Picture *picture = pictures[sourceIndexPath.row];
     [pictures removeObjectAtIndex:sourceIndexPath.row];

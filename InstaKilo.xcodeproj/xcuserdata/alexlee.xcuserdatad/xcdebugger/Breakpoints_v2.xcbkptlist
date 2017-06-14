@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "InstaKilo/InstaKiloCollectionViewController.m"
-            timestampString = "519166092.25813"
+            timestampString = "519166623.420244"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "142"
-            endingLineNumber = "142"
+            startingLineNumber = "138"
+            endingLineNumber = "138"
             landmarkName = "-collectionView:moveItemAtIndexPath:toIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "InstaKilo/InstaKiloCollectionViewController.m"
-            timestampString = "519166092.25813"
+            timestampString = "519166623.420244"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "137"
-            endingLineNumber = "137"
+            startingLineNumber = "133"
+            endingLineNumber = "133"
             landmarkName = "-collectionView:targetIndexPathForMoveFromItemAtIndexPath:toProposedIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
