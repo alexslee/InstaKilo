@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  ImageCollectionViewCell.h
 //  InstaKilo
 //
 //  Created by Alex Lee on 2017-06-14.
@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface ImageCollectionViewCell : UICollectionViewCell
 
+@property (strong, nonatomic) UIImageView *imageView;
 
 @end
-

@@ -9,10 +9,12 @@
 /* Begin PBXBuildFile section */
 		433B40941EF0FE6000D98F4C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 433B40931EF0FE6000D98F4C /* main.m */; };
 		433B40971EF0FE6000D98F4C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 433B40961EF0FE6000D98F4C /* AppDelegate.m */; };
-		433B409A1EF0FE6000D98F4C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 433B40991EF0FE6000D98F4C /* ViewController.m */; };
 		433B409D1EF0FE6000D98F4C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 433B409B1EF0FE6000D98F4C /* Main.storyboard */; };
 		433B409F1EF0FE6000D98F4C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 433B409E1EF0FE6000D98F4C /* Assets.xcassets */; };
 		433B40A21EF0FE6000D98F4C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 433B40A01EF0FE6000D98F4C /* LaunchScreen.storyboard */; };
+		433B40AB1EF196EA00D98F4C /* ImageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 433B40AA1EF196EA00D98F4C /* ImageCollectionViewCell.m */; };
+		433B40B11EF19AC200D98F4C /* InstaKiloCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 433B40B01EF19AC200D98F4C /* InstaKiloCollectionViewController.m */; };
+		433B40B41EF19B9D00D98F4C /* Picture.m in Sources */ = {isa = PBXBuildFile; fileRef = 433B40B31EF19B9D00D98F4C /* Picture.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,12 +22,16 @@
 		433B40931EF0FE6000D98F4C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		433B40951EF0FE6000D98F4C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		433B40961EF0FE6000D98F4C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		433B40981EF0FE6000D98F4C /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		433B40991EF0FE6000D98F4C /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		433B409C1EF0FE6000D98F4C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		433B409E1EF0FE6000D98F4C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		433B40A11EF0FE6000D98F4C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		433B40A31EF0FE6000D98F4C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		433B40A91EF196EA00D98F4C /* ImageCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageCollectionViewCell.h; sourceTree = "<group>"; };
+		433B40AA1EF196EA00D98F4C /* ImageCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageCollectionViewCell.m; sourceTree = "<group>"; };
+		433B40AF1EF19AC200D98F4C /* InstaKiloCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstaKiloCollectionViewController.h; sourceTree = "<group>"; };
+		433B40B01EF19AC200D98F4C /* InstaKiloCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstaKiloCollectionViewController.m; sourceTree = "<group>"; };
+		433B40B21EF19B9D00D98F4C /* Picture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Picture.h; sourceTree = "<group>"; };
+		433B40B31EF19B9D00D98F4C /* Picture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Picture.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,8 +66,12 @@
 			children = (
 				433B40951EF0FE6000D98F4C /* AppDelegate.h */,
 				433B40961EF0FE6000D98F4C /* AppDelegate.m */,
-				433B40981EF0FE6000D98F4C /* ViewController.h */,
-				433B40991EF0FE6000D98F4C /* ViewController.m */,
+				433B40B21EF19B9D00D98F4C /* Picture.h */,
+				433B40B31EF19B9D00D98F4C /* Picture.m */,
+				433B40A91EF196EA00D98F4C /* ImageCollectionViewCell.h */,
+				433B40AA1EF196EA00D98F4C /* ImageCollectionViewCell.m */,
+				433B40AF1EF19AC200D98F4C /* InstaKiloCollectionViewController.h */,
+				433B40B01EF19AC200D98F4C /* InstaKiloCollectionViewController.m */,
 				433B409B1EF0FE6000D98F4C /* Main.storyboard */,
 				433B409E1EF0FE6000D98F4C /* Assets.xcassets */,
 				433B40A01EF0FE6000D98F4C /* LaunchScreen.storyboard */,
@@ -150,8 +160,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				433B409A1EF0FE6000D98F4C /* ViewController.m in Sources */,
+				433B40B41EF19B9D00D98F4C /* Picture.m in Sources */,
+				433B40B11EF19AC200D98F4C /* InstaKiloCollectionViewController.m in Sources */,
 				433B40971EF0FE6000D98F4C /* AppDelegate.m in Sources */,
+				433B40AB1EF196EA00D98F4C /* ImageCollectionViewCell.m in Sources */,
 				433B40941EF0FE6000D98F4C /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -309,6 +321,7 @@
 				433B40A81EF0FE6000D98F4C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
