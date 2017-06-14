@@ -27,6 +27,7 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.installsStandardGestureForInteractiveMovement = YES;
     
     // Uncomment the following line to preserve selection between presentations
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -128,6 +129,21 @@ static NSString * const reuseIdentifier = @"Cell";
         header.headerLabel.text = [[self.displayThese allKeys] sortedArrayUsingSelector:@selector(compare:)][indexPath.section];
     }
     return header;
+    
+}
+
+- (NSIndexPath *)collectionView:(UICollectionView *)collectionView targetIndexPathForMoveFromItemAtIndexPath:(NSIndexPath *)originalIndexPath toProposedIndexPath:(NSIndexPath *)proposedIndexPath;
+{
+    return ( (originalIndexPath.section == proposedIndexPath.section) ? proposedIndexPath : originalIndexPath );
+}
+
+- (void)collectionView:(UICollectionView *)collectionView moveItemAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath;
+{
+    NSString *sectionKey = [[self.displayThese allKeys] sortedArrayUsingSelector:@selector(compare:)][sourceIndexPath.section];
+    NSMutableArray *pictures = [self.displayThese objectForKey:sectionKey];
+    Picture *picture = pictures[sourceIndexPath.row];
+    [pictures removeObjectAtIndex:sourceIndexPath.row];
+    [pictures insertObject:picture atIndex:destinationIndexPath.row];
     
 }
 
