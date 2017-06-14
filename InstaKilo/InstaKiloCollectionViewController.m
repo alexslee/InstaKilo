@@ -10,7 +10,7 @@
 
 @interface InstaKiloCollectionViewController ()
 
-@property (strong, nonatomic) NSMutableArray *pictures;
+@property (strong, nonatomic) NSMutableArray<Picture *> *pictures;
 @property (strong, nonatomic) NSMutableDictionary *displayThese;
 
 @end
@@ -80,8 +80,8 @@ static NSString * const reuseIdentifier = @"Cell";
     // Configure the cell
     
     //hard-coding for now
-    NSArray *images = self.pictures;// = [self.displayThese objectForKey:@"allImages"];
-    cell.imageView.image = [UIImage imageNamed:@"image1.jpg"];//[images objectAtIndex:indexPath.row];
+    NSArray<Picture *> *images = self.pictures;// = [self.displayThese objectForKey:@"allImages"];
+    cell.imageView.image = [images objectAtIndex:indexPath.row].pic;
     return cell;
 }
 
