@@ -8,6 +8,9 @@
 
 #import "InstaKiloCollectionViewController.h"
 
+const CGFloat kScaleBoundLower = 1.0;
+const CGFloat kScaleBoundUpper = 2.0;
+
 @interface InstaKiloCollectionViewController ()
 
 @property (strong, nonatomic) NSMutableArray<Picture *> *pictures;
@@ -18,6 +21,12 @@
 @property (strong,nonatomic) PictureManager *pictureManager;
 
 @property (assign) groupingBy sortType;
+
+//variables used for pinch-to-zoom code (bottom of the file)
+@property (nonatomic, strong) UIPinchGestureRecognizer *pinchGesture;
+@property (nonatomic,assign) CGFloat scale;
+@property (nonatomic,assign) BOOL fitCells;
+@property (nonatomic,assign) BOOL animatedZooming;
 
 @end
 
@@ -51,6 +60,16 @@ static NSString * const reuseIdentifier = @"Cell";
     self.collectionView.userInteractionEnabled = YES;
     
     [self.collectionView addGestureRecognizer:doubleTap];
+    
+    // Add the pinch to zoom gesture
+    self.pinchGesture = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(didReceivePinchGesture:)];
+    [self.collectionView addGestureRecognizer:self.pinchGesture];
+    
+    self.fitCells = NO;
+    self.animatedZooming = NO;
+    
+    // Default scale is the average between the lower and upper bound
+    self.scale = (kScaleBoundUpper + kScaleBoundLower)/2.0;
     
     [self.collectionView setDataSource:self];
     
@@ -182,5 +201,58 @@ static NSString * const reuseIdentifier = @"Cell";
 	
 }
 */
+
+//PINCH TO ZOOM ON COLLECTION VIEW, SOURCED FROM https://github.com/CanTheAlmighty/SamplePinchGesture
+
+#pragma mark - custom size on pinch
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Main use of the scale property
+    CGFloat scaledWidth = 50 * self.scale;
+    if (self.fitCells) {
+        NSInteger cols = floor(320 / scaledWidth);
+        CGFloat totalSpacingSize = 10 * (cols - 1); // 10 is defined in the xib
+        CGFloat fittedWidth = (320 - totalSpacingSize) / cols;
+        return CGSizeMake(fittedWidth, fittedWidth);
+    } else {
+        return CGSizeMake(scaledWidth, scaledWidth);
+    }
+}
+
+
+#pragma mark - Gesture Recognizers for zoom-on-pinch
+- (void)didReceivePinchGesture:(UIPinchGestureRecognizer*)gesture
+{
+    static CGFloat scaleStart;
+    
+    if (gesture.state == UIGestureRecognizerStateBegan)
+    {
+        // Take an snapshot of the initial scale
+        scaleStart = self.scale;
+        return;
+    }
+    if (gesture.state == UIGestureRecognizerStateChanged)
+    {
+        // Apply the scale of the gesture to get the new scale
+        self.scale = scaleStart * gesture.scale;
+        
+        if (self.animatedZooming)
+        {
+            // Animated zooming (remove and re-add the gesture recognizer to prevent updates during the animation)
+            [self.collectionView removeGestureRecognizer:self.pinchGesture];
+            UICollectionViewFlowLayout *newLayout = [[UICollectionViewFlowLayout alloc] init];
+            [self.collectionView setCollectionViewLayout:newLayout animated:YES completion:^(BOOL finished) {
+                [self.collectionView addGestureRecognizer:self.pinchGesture];
+            }];
+        }
+        else
+        {
+            // Invalidate layout
+            [self.collectionView.collectionViewLayout invalidateLayout];
+        }
+        
+    }
+    
+}
 
 @end
