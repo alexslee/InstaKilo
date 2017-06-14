@@ -22,6 +22,8 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.imageView = [[UIImageView alloc] init];
+        self.imageView.contentMode = UIViewContentModeScaleAspectFill;
+        self.imageView.layer.masksToBounds = YES;
         [self.contentView addSubview:self.imageView];
     }
     return self;

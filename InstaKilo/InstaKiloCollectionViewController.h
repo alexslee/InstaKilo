@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Picture.h"
 #import "ImageCollectionViewCell.h"
+#import "PictureManager.h"
 
 @interface InstaKiloCollectionViewController : UICollectionViewController
 

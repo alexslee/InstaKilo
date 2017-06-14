@@ -30,17 +30,20 @@ static NSString * const reuseIdentifier = @"Cell";
     
     // Do any additional setup after loading the view.
     
-    //TEST SETUP FOR FUNCTIONALITY VIEWING, JUST RANDOMLY SETTING IMAGES + METADATA FOR DEFAULT DISPLAY
-    self.pictures = [[NSMutableArray alloc] init];
-    for (int i = 1; i <= 10; i++) {
-        NSString *fileName = [NSString stringWithFormat:@"image%d.jpg",i];
-        NSString *testLocation = (i % 2 == 0) ? @"Vancouver" : @"Toronto";
-        Picture *picture = [[Picture alloc] initWithPicture:[UIImage imageNamed:fileName] andCategory:@"Phone" andLocation:testLocation];
-        
-        [self.pictures addObject:picture];
-    }
+    PictureManager *pictureManager = [[PictureManager alloc] init];
+    self.displayThese = pictureManager.allImagesDict;
     
-    [self.displayThese setObject:self.pictures forKey:@"allImages"];
+//    //TEST SETUP FOR FUNCTIONALITY VIEWING, JUST RANDOMLY SETTING IMAGES + METADATA FOR DEFAULT DISPLAY
+//    self.pictures = [[NSMutableArray alloc] init];
+//    for (int i = 1; i <= 10; i++) {
+//        NSString *fileName = [NSString stringWithFormat:@"image%d.jpg",i];
+//        NSString *testLocation = (i % 2 == 0) ? @"Vancouver" : @"Toronto";
+//        Picture *picture = [[Picture alloc] initWithPicture:[UIImage imageNamed:fileName] andCategory:@"Phone" andLocation:testLocation];
+//        
+//        [self.pictures addObject:picture];
+//    }
+//    
+//    [self.displayThese setObject:self.pictures forKey:@"allImages"];
     
     [self.collectionView setDataSource:self];
     
@@ -80,7 +83,7 @@ static NSString * const reuseIdentifier = @"Cell";
     // Configure the cell
     
     //hard-coding for now
-    NSArray<Picture *> *images = self.pictures;// = [self.displayThese objectForKey:@"allImages"];
+    NSArray<Picture *> *images = [self.displayThese objectForKey:@"all"];
     cell.imageView.image = [images objectAtIndex:indexPath.row].pic;
     return cell;
 }
